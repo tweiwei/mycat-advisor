@@ -1,6 +1,5 @@
 package org.apache.mycat.advisor.persistence.model;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.sql.Timestamp;
@@ -8,16 +7,27 @@ import java.sql.Timestamp;
 /**
  * Created by cjl on 2016/3/20.
  */
-public class Authone {
-    private Long id;
-    private Byte loginstatus;
-    private String password;
-    private Byte failcount;
-    private String onlinestatus;
-    private Timestamp lastupdatedate;
-
+public class AuthOne {
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
+    private Long id;
+
+    @Column(name = "loginstatus", nullable = true, insertable = true, updatable = true)
+    private Byte loginstatus;
+
+    @Column(name = "password", nullable = true, insertable = true, updatable = true, length = 128)
+    private String password;
+
+    @Column(name = "failcount", nullable = true, insertable = true, updatable = true)
+    private Byte failcount;
+
+    @Column(name = "onlinestatus", nullable = true, insertable = true, updatable = true, length = 1)
+    private String onlinestatus;
+
+    @Column(name = "lastupdatedate", nullable = false, insertable = true, updatable = true)
+    private Timestamp lastupdatedate;
+
+
     public Long getId() {
         return id;
     }
@@ -26,8 +36,7 @@ public class Authone {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "loginstatus", nullable = true, insertable = true, updatable = true)
+
     public Byte getLoginstatus() {
         return loginstatus;
     }
@@ -36,8 +45,7 @@ public class Authone {
         this.loginstatus = loginstatus;
     }
 
-    @Basic
-    @Column(name = "password", nullable = true, insertable = true, updatable = true, length = 128)
+
     public String getPassword() {
         return password;
     }
@@ -46,8 +54,7 @@ public class Authone {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "failcount", nullable = true, insertable = true, updatable = true)
+
     public Byte getFailcount() {
         return failcount;
     }
@@ -56,8 +63,7 @@ public class Authone {
         this.failcount = failcount;
     }
 
-    @Basic
-    @Column(name = "onlinestatus", nullable = true, insertable = true, updatable = true, length = 1)
+
     public String getOnlinestatus() {
         return onlinestatus;
     }
@@ -66,8 +72,7 @@ public class Authone {
         this.onlinestatus = onlinestatus;
     }
 
-    @Basic
-    @Column(name = "lastupdatedate", nullable = false, insertable = true, updatable = true)
+
     public Timestamp getLastupdatedate() {
         return lastupdatedate;
     }
@@ -81,7 +86,7 @@ public class Authone {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Authone authone = (Authone) o;
+        AuthOne authone = (AuthOne) o;
 
         if (id != null ? !id.equals(authone.id) : authone.id != null) return false;
         if (loginstatus != null ? !loginstatus.equals(authone.loginstatus) : authone.loginstatus != null) return false;

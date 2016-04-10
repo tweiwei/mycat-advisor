@@ -3,26 +3,77 @@ package org.apache.mycat.advisor.persistence.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Id;
-import java.sql.Date;
-import java.sql.Timestamp;
+import javax.persistence.Transient;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by cjl on 2016/3/20.
  */
-@javax.persistence.Table(name = "tab_user_info", schema = "", catalog = "mycat_advisor")
+@javax.persistence.Table(name = "tab_user_info")
 public class TabUserInfo {
+    @Id
+    @Column(name = "id", nullable = false, insertable = true, updatable = true)
     private Long id;
 
-    @javax.persistence.Transient
+    @Transient
     private Collection<GrantedAuthority> grantedAuthority;
+    private String username;
+    private String password;
+    @Column(name = "user_type", nullable = true, insertable = true, updatable = true)
+    private Integer userType;
+    @Column(name = "user_alias", nullable = true, insertable = true, updatable = true, length = 20)
+    private String userAlias;
+    @Column(name = "email_address", nullable = true, insertable = true, updatable = true, length = 32)
+    private String emailAddress;
+    private String qq;
+    private String telephone;
+    private String weixin;
+    private String weibo;
+    private Integer gender;
+    private String birth;
+    private String address;
+    private Integer company;
+    private Integer post;
+    @Column(name = "real_name", nullable = true, insertable = true, updatable = true, length = 20)
+    private String realName;
+    private String idcard;
+    private String zhifubao;
+    private Date insertTime;
+    private Date updateTime;
+    private Integer status;
+    private Integer delFlag;
+    private Integer enabled;
+    private Integer accountNonExpired;
+    private Integer accountNonLocked;
+    private Integer credentialsNonExpired;
+    @Transient
+    private Set<SysUsersRoles> sysUsersRoleses = new HashSet<SysUsersRoles>(0);
+    @Transient
+    private String postName;
+    @Transient
+    private String companyName;
 
+    public String getPostName() {
+        return postName;
+    }
 
-    @Id
-    @javax.persistence.Column(name = "id", nullable = false, insertable = true, updatable = true)
+    public void setPostName(String postName) {
+        this.postName = postName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
     public Long getId() {
         return id;
     }
@@ -31,10 +82,8 @@ public class TabUserInfo {
         this.id = id;
     }
 
-    private String username;
-
     @Basic
-    @javax.persistence.Column(name = "username", nullable = true, insertable = true, updatable = true, length = 32)
+    @Column(name = "username", nullable = true, insertable = true, updatable = true, length = 32)
     public String getUsername() {
         return username;
     }
@@ -43,10 +92,8 @@ public class TabUserInfo {
         this.username = username;
     }
 
-    private String password;
-
     @Basic
-    @javax.persistence.Column(name = "password", nullable = true, insertable = true, updatable = true, length = 32)
+    @Column(name = "password", nullable = true, insertable = true, updatable = true, length = 32)
     public String getPassword() {
         return password;
     }
@@ -55,10 +102,8 @@ public class TabUserInfo {
         this.password = password;
     }
 
-    private Integer userType;
-
     @Basic
-    @javax.persistence.Column(name = "user_type", nullable = true, insertable = true, updatable = true)
+
     public Integer getUserType() {
         return userType;
     }
@@ -67,10 +112,8 @@ public class TabUserInfo {
         this.userType = userType;
     }
 
-    private String userAlias;
-
     @Basic
-    @javax.persistence.Column(name = "user_alias", nullable = true, insertable = true, updatable = true, length = 20)
+
     public String getUserAlias() {
         return userAlias;
     }
@@ -79,10 +122,8 @@ public class TabUserInfo {
         this.userAlias = userAlias;
     }
 
-    private String emailAddress;
-
     @Basic
-    @javax.persistence.Column(name = "email_address", nullable = true, insertable = true, updatable = true, length = 32)
+
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -91,10 +132,8 @@ public class TabUserInfo {
         this.emailAddress = emailAddress;
     }
 
-    private String qq;
-
     @Basic
-    @javax.persistence.Column(name = "qq", nullable = true, insertable = true, updatable = true, length = 20)
+    @Column(name = "qq", nullable = true, insertable = true, updatable = true, length = 20)
     public String getQq() {
         return qq;
     }
@@ -103,10 +142,8 @@ public class TabUserInfo {
         this.qq = qq;
     }
 
-    private String telephone;
-
     @Basic
-    @javax.persistence.Column(name = "telephone", nullable = true, insertable = true, updatable = true, length = 11)
+    @Column(name = "telephone", nullable = true, insertable = true, updatable = true, length = 11)
     public String getTelephone() {
         return telephone;
     }
@@ -115,10 +152,8 @@ public class TabUserInfo {
         this.telephone = telephone;
     }
 
-    private String weixin;
-
     @Basic
-    @javax.persistence.Column(name = "weixin", nullable = true, insertable = true, updatable = true, length = 32)
+    @Column(name = "weixin", nullable = true, insertable = true, updatable = true, length = 32)
     public String getWeixin() {
         return weixin;
     }
@@ -127,10 +162,8 @@ public class TabUserInfo {
         this.weixin = weixin;
     }
 
-    private String weibo;
-
     @Basic
-    @javax.persistence.Column(name = "weibo", nullable = true, insertable = true, updatable = true, length = 32)
+    @Column(name = "weibo", nullable = true, insertable = true, updatable = true, length = 32)
     public String getWeibo() {
         return weibo;
     }
@@ -139,10 +172,8 @@ public class TabUserInfo {
         this.weibo = weibo;
     }
 
-    private Integer gender;
-
     @Basic
-    @javax.persistence.Column(name = "gender", nullable = true, insertable = true, updatable = true)
+    @Column(name = "gender", nullable = true, insertable = true, updatable = true)
     public Integer getGender() {
         return gender;
     }
@@ -151,22 +182,18 @@ public class TabUserInfo {
         this.gender = gender;
     }
 
-    private Date birth;
-
     @Basic
-    @javax.persistence.Column(name = "birth", nullable = true, insertable = true, updatable = true)
-    public Date getBirth() {
+    @Column(name = "birth", nullable = true, insertable = true, updatable = true)
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 
-    private String address;
-
     @Basic
-    @javax.persistence.Column(name = "address", nullable = true, insertable = true, updatable = true, length = 100)
+    @Column(name = "address", nullable = true, insertable = true, updatable = true, length = 100)
     public String getAddress() {
         return address;
     }
@@ -175,10 +202,8 @@ public class TabUserInfo {
         this.address = address;
     }
 
-    private Integer company;
-
     @Basic
-    @javax.persistence.Column(name = "company", nullable = true, insertable = true, updatable = true)
+    @Column(name = "company", nullable = true, insertable = true, updatable = true)
     public Integer getCompany() {
         return company;
     }
@@ -187,10 +212,8 @@ public class TabUserInfo {
         this.company = company;
     }
 
-    private Integer post;
-
     @Basic
-    @javax.persistence.Column(name = "post", nullable = true, insertable = true, updatable = true)
+    @Column(name = "post", nullable = true, insertable = true, updatable = true)
     public Integer getPost() {
         return post;
     }
@@ -199,10 +222,8 @@ public class TabUserInfo {
         this.post = post;
     }
 
-    private String realName;
-
     @Basic
-    @javax.persistence.Column(name = "real_name", nullable = true, insertable = true, updatable = true, length = 20)
+
     public String getRealName() {
         return realName;
     }
@@ -211,10 +232,8 @@ public class TabUserInfo {
         this.realName = realName;
     }
 
-    private String idcard;
-
     @Basic
-    @javax.persistence.Column(name = "idcard", nullable = true, insertable = true, updatable = true, length = 18)
+    @Column(name = "idcard", nullable = true, insertable = true, updatable = true, length = 18)
     public String getIdcard() {
         return idcard;
     }
@@ -223,10 +242,8 @@ public class TabUserInfo {
         this.idcard = idcard;
     }
 
-    private String zhifubao;
-
     @Basic
-    @javax.persistence.Column(name = "zhifubao", nullable = true, insertable = true, updatable = true, length = 50)
+    @Column(name = "zhifubao", nullable = true, insertable = true, updatable = true, length = 50)
     public String getZhifubao() {
         return zhifubao;
     }
@@ -235,34 +252,28 @@ public class TabUserInfo {
         this.zhifubao = zhifubao;
     }
 
-    private Timestamp insertTime;
-
     @Basic
-    @javax.persistence.Column(name = "insert_time", nullable = true, insertable = true, updatable = true)
-    public Timestamp getInsertTime() {
+    @Column(name = "insert_time", nullable = true, insertable = true, updatable = true)
+    public Date getInsertTime() {
         return insertTime;
     }
 
-    public void setInsertTime(Timestamp insertTime) {
+    public void setInsertTime(Date insertTime) {
         this.insertTime = insertTime;
     }
 
-    private Timestamp updateTime;
-
     @Basic
-    @javax.persistence.Column(name = "update_time", nullable = true, insertable = true, updatable = true)
-    public Timestamp getUpdateTime() {
+    @Column(name = "update_time", nullable = true, insertable = true, updatable = true)
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
-    private Integer status;
-
     @Basic
-    @javax.persistence.Column(name = "status", nullable = true, insertable = true, updatable = true)
+    @Column(name = "status", nullable = true, insertable = true, updatable = true)
     public Integer getStatus() {
         return status;
     }
@@ -271,10 +282,8 @@ public class TabUserInfo {
         this.status = status;
     }
 
-    private Integer delFlag;
-
     @Basic
-    @javax.persistence.Column(name = "del_flag", nullable = true, insertable = true, updatable = true)
+    @Column(name = "del_flag", nullable = true, insertable = true, updatable = true)
     public Integer getDelFlag() {
         return delFlag;
     }
@@ -283,10 +292,8 @@ public class TabUserInfo {
         this.delFlag = delFlag;
     }
 
-    private Integer enabled;
-
     @Basic
-    @javax.persistence.Column(name = "enabled", nullable = true, insertable = true, updatable = true)
+    @Column(name = "enabled", nullable = true, insertable = true, updatable = true)
     public Integer getEnabled() {
         return enabled;
     }
@@ -295,10 +302,8 @@ public class TabUserInfo {
         this.enabled = enabled;
     }
 
-    private Integer accountNonExpired;
-
     @Basic
-    @javax.persistence.Column(name = "account_non_expired", nullable = true, insertable = true, updatable = true)
+    @Column(name = "account_non_expired", nullable = true, insertable = true, updatable = true)
     public Integer getAccountNonExpired() {
         return accountNonExpired;
     }
@@ -307,10 +312,8 @@ public class TabUserInfo {
         this.accountNonExpired = accountNonExpired;
     }
 
-    private Integer accountNonLocked;
-
     @Basic
-    @javax.persistence.Column(name = "account_non_locked", nullable = true, insertable = true, updatable = true)
+    @Column(name = "account_non_locked", nullable = true, insertable = true, updatable = true)
     public Integer getAccountNonLocked() {
         return accountNonLocked;
     }
@@ -319,10 +322,8 @@ public class TabUserInfo {
         this.accountNonLocked = accountNonLocked;
     }
 
-    private Integer credentialsNonExpired;
-
     @Basic
-    @javax.persistence.Column(name = "credentials_non_expired", nullable = true, insertable = true, updatable = true)
+    @Column(name = "credentials_non_expired", nullable = true, insertable = true, updatable = true)
     public Integer getCredentialsNonExpired() {
         return credentialsNonExpired;
     }
@@ -330,9 +331,6 @@ public class TabUserInfo {
     public void setCredentialsNonExpired(Integer credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;
     }
-
-    @javax.persistence.Transient
-    private Set<SysUsersRoles> sysUsersRoleses = new HashSet<SysUsersRoles>(0);
 
     public Set<SysUsersRoles> getSysUsersRoleses() {
         return sysUsersRoleses;
@@ -413,12 +411,12 @@ public class TabUserInfo {
         return result;
     }
 
-    public void setGrantedAuthority(Collection<GrantedAuthority> grantedAuthority) {
-        this.grantedAuthority = grantedAuthority;
-    }
-
     public Collection<GrantedAuthority> getGrantedAuthority() {
         return grantedAuthority;
+    }
+
+    public void setGrantedAuthority(Collection<GrantedAuthority> grantedAuthority) {
+        this.grantedAuthority = grantedAuthority;
     }
 
 }
